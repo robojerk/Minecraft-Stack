@@ -1,0 +1,85 @@
+version: "3"
+services:
+  mc-velocity:
+    hostname: mc-velocity
+    image: itzg/bungeecord:latest # https://github.com/itzg/docker-bungeecord
+    container_name: mc-velocity
+    restart: unless-stopped
+    user: '1000:1000'
+    networks:
+      - default
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TYPE: VELOCITY
+      VELOCITY_VERSION: latest
+      PLUGINS: "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/velocity, 
+                https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/velocity"
+    ports:
+      - 19132:19132/udp #Bedrock clients
+      - 25565:25565 #Java clients
+    volumes:
+      - $HOME/docker/mc-velocity:/data:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  mc-lobby:
+    image: itzg/minecraft-server:latest # https://github.com/itzg/docker-minecraft-server
+    container_name: mc-lobby
+    restart: unless-stopped
+    user: '1000:1000'
+    networks:
+      - default
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TYPE: PAPER
+      PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest,
+                https://dev.bukkit.org/projects/iportal/files/latest,
+                https://dev.bukkit.org/projects/worldguard/files/latest"
+    ports:
+      - 25566:25566
+    volumes:
+      - $HOME/docker/mc-lobby:/data:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  mc-creative:
+    image: itzg/minecraft-server:latest
+    container_name: mc-creative
+    restart: unless-stopped
+    user: '1000:1000'
+    networks:
+      - default
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TYPE: PAPER
+      PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest,
+                https://dev.bukkit.org/projects/iportal/files/latest,
+                https://dev.bukkit.org/projects/worldguard/files/latest"
+    ports:
+      - 25567:25567
+    volumes:
+      - $HOME/docker/mc-creative:/data:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  mc-survival:
+    image: itzg/minecraft-server:latest
+    container_name: mc-survival
+    restart: unless-stopped
+    user: '1000:1000'
+    networks:
+      - default
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TYPE: PAPER
+      PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest, https://dev.bukkit.org/projects/iportal/files/latest, https://dev.bukkit.org/projects/worldguard/files/latest"
+    ports:
+      - 25568:25568
+    volumes:
+      - $HOME/docker/mc-survival:/data:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
