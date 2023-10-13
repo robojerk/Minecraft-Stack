@@ -9,6 +9,7 @@ services:
     networks:
       - default
     environment:
+      EULA: "true"
       PUID: 1000
       PGID: 1000
       TYPE: VELOCITY
@@ -33,6 +34,7 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
+      EULA: "true"
       TYPE: PAPER
       PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest,
                 https://dev.bukkit.org/projects/iportal/files/latest,
@@ -54,6 +56,7 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
+      EULA: "true"
       TYPE: PAPER
       PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest,
                 https://dev.bukkit.org/projects/iportal/files/latest,
@@ -75,6 +78,7 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
+      EULA: "true"
       TYPE: PAPER
       PLUGINS: "https://dev.bukkit.org/projects/worldedit/files/latest, https://dev.bukkit.org/projects/iportal/files/latest, https://dev.bukkit.org/projects/worldguard/files/latest"
     ports:
